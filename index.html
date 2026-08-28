@@ -91,6 +91,14 @@
     .highlight strong {
       color: var(--text);
     }
+
+    code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--primary);
+    }
   </style>
 </head>
 
@@ -108,9 +116,9 @@
     </div>
 
     <h2>1. Information We Access and Process Locally</h2>
-    <p>PixelSqueeze accesses only the device features required to perform image compression and editing:</p>
+    <p>PixelSqueeze accesses only the essential device features required to perform image compression and editing:</p>
     <ul>
-      <li><strong>Photo Library & Selected Images:</strong> When you pick an image to compress, resize, or convert, PixelSqueeze reads the file temporarily into memory to process it. Once saved or discarded, the working temporary cache is automatically cleaned.</li>
+      <li><strong>Selected Photos (Android Photo Picker):</strong> When you pick images to compress, resize, or convert, PixelSqueeze reads only the specific files you select into temporary device memory for processing. Once saved or discarded, temporary working cache files are automatically cleared. PixelSqueeze never scans or accesses your broader photo library.</li>
       <li><strong>Camera (Optional):</strong> If you choose to capture a new photo directly within the app for scanning or compression.</li>
       <li><strong>App Preferences:</strong> Your selected preferences (theme, language, default compression quality, history) are saved locally on your device using encrypted local storage.</li>
     </ul>
@@ -118,8 +126,9 @@
     <h2>2. Information We Do NOT Collect</h2>
     <ul>
       <li>We do <strong>not</strong> collect or store your photos, documents, or personal files on external servers.</li>
+      <li>We do <strong>not</strong> require user registration, accounts, or sign-in credentials.</li>
       <li>We do <strong>not</strong> collect your name, email address, phone number, contacts, or location.</li>
-      <li>We do <strong>not</strong> track your browsing activity or sell personal data to third parties.</li>
+      <li>We do <strong>not</strong> track your browsing activity across other apps or sell personal data to third parties.</li>
     </ul>
 
     <h2>3. Advertising and Analytics (Google AdMob)</h2>
@@ -131,11 +140,11 @@
     </ul>
     <p>Google's handling of data is governed by the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google Advertising Policies</a>.</p>
 
-    <h2>4. App Permissions Explained</h2>
+    <h2>4. App Permissions & Privacy Architecture</h2>
     <ul>
-      <li><strong>READ_MEDIA_IMAGES / READ_EXTERNAL_STORAGE:</strong> Enables you to select images from your gallery for compression.</li>
-      <li><strong>WRITE_EXTERNAL_STORAGE:</strong> Enables saving compressed, resized images and PDF files directly to your device storage (Android 10 and below).</li>
-      <li><strong>CAMERA (Optional):</strong> Allows taking photos directly inside the app.</li>
+      <li><strong>Android Photo Picker (Privacy-Preserving):</strong> PixelSqueeze uses the native Android Photo Picker (<code>ACTION_PICK_IMAGES</code>), allowing you to grant access only to specific photos you choose to compress. The app never requests or uses broad device photo/media library read permissions (<code>READ_MEDIA_IMAGES</code>, <code>READ_MEDIA_VIDEO</code>, <code>READ_MEDIA_AUDIO</code>, or <code>READ_EXTERNAL_STORAGE</code>).</li>
+      <li><strong>Saving to Gallery (Scoped Storage):</strong> Saving compressed photos and exported PDF documents to your device library uses standard Android MediaStore / scoped storage (or minimal legacy scoped write permission on older Android versions).</li>
+      <li><strong>CAMERA (Optional):</strong> Allows taking photos directly inside the app when you tap the Camera button.</li>
     </ul>
 
     <h2>5. Children's Privacy</h2>
